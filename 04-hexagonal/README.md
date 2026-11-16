@@ -62,8 +62,8 @@ is a *move*, not a rewrite.
 
 ## The vocabulary, against this code
 
-This is the first folder where the DDD words have something to point at. The definitions live in
-[the tour's README](../README.md#the-words); here is where each one landed:
+This is the first folder where the DDD words have something to point at. Here is where each one
+landed:
 
 | Word           | Here                        | Why                                                        |
 |----------------|-----------------------------|------------------------------------------------------------|
@@ -129,8 +129,7 @@ arrives, move the folders then.
 ### Where `validate.go` stops short
 
 `validate.go` answers the question 01 and 02 couldn't, and it's still the weaker of the two answers
-available, because it runs *after* the sighting exists. The stronger one is *parse, don't validate*,
-described in [the tour's README](../README.md#parse-dont-validate).
+available, because it runs *after* the sighting exists. The stronger one is *parse, don't validate*.
 
 Two fields here are asking for it. `model.go` carries
 `EventDate string // "2016-01-11", and not a time.Time`, a field advertising that it holds three

@@ -77,8 +77,7 @@ uses, so the tour ends where a real build begins.
 ## When one domain needs another
 
 Vertical folders promise that a sighting and a species can be worked on separately, and this is the
-first folder where that promise is load-bearing. The general rules are in
-[the tour's README](../README.md#when-one-domain-needs-another). Here is where each one bites.
+first folder where that promise is load-bearing. Here is where it bites.
 
 **`sighting` imports `species`, and that's allowed.** A sighting holds the species it is of, so the
 reference is right there in the record, and `sighting.go` narrows the dependency to the two methods

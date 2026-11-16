@@ -80,8 +80,7 @@ Two of those deserve an answer rather than a shrug.
 
 **The `json` tags.** `domain.Sighting` imports nothing and still carries them, which means it is
 dressed for a caller it claims never to have heard of. The rule it's breaking is *a model per
-layer*, described in [the tour's README](../README.md#a-model-per-layer): tags at the edges, no tags
-in the middle. Ours are a leftover from 02, where the struct really was GBIF's wire format, and
+layer*: tags at the edges, no tags in the middle. Ours are a leftover from 02, where the struct really was GBIF's wire format, and
 nobody deleted them when it moved inwards. That's the honest way this happens.
 
 **`services` as a dumping ground.** A layer earns its name when you can say what it's for in one
