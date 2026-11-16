@@ -1,0 +1,9 @@
+go 1.26.0
+
+use (
+	./01-flat
+	./02-layered
+	./03-onion
+	./04-hexagonal
+	./05-feature
+)
