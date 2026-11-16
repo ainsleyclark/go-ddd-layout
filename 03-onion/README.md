@@ -22,8 +22,8 @@ Second, `domain` declares what it needs. `SightingStore` and `SpeciesStore` are 
 `domain`, next to the types they carry, by the code that wants them, and `store` implements them.
 The arrow points the other way to 02: storage no longer sits above the model, it answers to it.
 
-`SightingStore` has a name in the literature: it's a **repository**. Two maps behind it today,
-SQLite by the end of the day, and `domain` never finds out which.
+`SightingStore` has a name in the literature: it's a **repository**. Two maps behind it here,
+SQLite in a real app, and `domain` never finds out which.
 
 ```
 03-onion/

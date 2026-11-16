@@ -71,7 +71,8 @@ so adding a page is a file in `handlers` and a line in `web.go`. Putting any of 
 domain would also bury the rules under generated template code, which matters once the templates
 stop being `html/template`.
 
-This is the structure the app uses, so the tour ends where the day's build begins.
+This is the structure the [full app](https://github.com/ainsleyclark/workshop-gophercon-africa-2026)
+uses, so the tour ends where a real build begins.
 
 ## When one domain needs another
 
@@ -103,15 +104,15 @@ you something.
 
 **"Sightings, sorted by species name, paged" belongs to neither.** `sightingmem` can't answer it
 without `species`, and `speciesmem` can't answer it at all. Reading both and sorting in Go is fine
-for the 480 rows in the workshop database and not fine for the real thing. The answer isn't to let
+for a few hundred rows and not fine for the real thing. The answer isn't to let
 `sightingmem` reach into species' data; it's a view, joined in the database, with its own small
 read-side folder that queries the view and nothing else. Once storage is SQLite this is nearly free:
-a view plus a query file is a read model, and sqlc writes the Go.
+a view plus a query file is a read model, and a tool like sqlc writes the Go.
 
 **And there is only one database.** The folders tell a story in which `sighting`, `species` and
 `weather` each own their own store. Useful story, because it stops anybody writing a join across
 them. But the day a write touches two of them you want a transaction, and a transaction wants one
-real database. So the app keeps one SQLite file and holds the boundary by convention instead:
+real database. So the full app keeps one SQLite file and holds the boundary by convention instead:
 `sighting`'s tables, `species`' tables, `weather`'s tables, each prefixed. SQLite has no schemas to
 do it for you.
 
@@ -166,25 +167,27 @@ join them when the seams turn out not to be there.
 - `Home` is a function returning a handler, not a struct with methods. What would have to be true
   of a page before the struct earned its keep?
 
-## Two notes before we build
+## Two notes before you build
 
 **On mocks.** The usual advice is to keep mocks in a shared subpackage, and it's reasonable advice.
-This repository does something different on purpose: the tests run against a real SQLite database
-via `dbtest`, with one parameterised setup per package, and there is barely a mock in it. The
-reason is that most of what a mock would prove here is that we typed the interface out twice. What
-we actually want to know is whether the SQL is right. Both approaches are defensible; ours is
-a choice, not an oversight, and it's worth knowing that it's a choice.
+The [full app](https://github.com/ainsleyclark/workshop-gophercon-africa-2026) does something
+different on purpose: its tests run against a real SQLite database, with one parameterised setup
+per package, and there is barely a mock in it. The reason is that most of what a mock would prove
+there is that we typed the interface out twice. What we actually want to know is whether the SQL is
+right. Both approaches are defensible; that one is a choice, not an oversight, and it's worth
+knowing that it's a choice.
 
-**On frameworks.** There isn't one here, and the day uses the standard library plus a handful of
-small libraries. A framework hands you a structure for free and takes the decision away in the same
+**On frameworks.** There isn't one here, and these five folders use nothing but the standard
+library. A framework hands you a structure for free and takes the decision away in the same
 motion. That's a fine trade once you know enough to judge what you're getting, and a poor one while
-the structure is the thing you're trying to learn. That's the only reason we build it by
-hand: after today you can read a framework's layout and recognise which of these five shapes it
-picked, and why.
+the structure is the thing you're trying to learn. That's the only reason it's built by hand: once
+you've read these five, you can read a framework's layout and recognise which of them it picked,
+and why.
 
 ## What can we improve?
 
-Nothing, in this shape — the next moves are all real ones, and they are the workshop:
+Nothing, in this shape. The next moves are all real ones, and the
+[full app](https://github.com/ainsleyclark/workshop-gophercon-africa-2026) makes most of them:
 
 - Swap the map for SQLite. `stores/sightingsqlite` implements the same port, written against
   queries sqlc generated, and nothing in `domain/` changes.

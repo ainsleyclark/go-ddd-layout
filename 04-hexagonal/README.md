@@ -56,8 +56,8 @@ Note also the two copies of a sighting. `gbif.Occurrence` is the JSON they send 
 one function, `transformOccurrence`, and that is the whole point — GBIF can rename a field and
 the blast radius is one line in one file.
 
-And note the three drawer names. `clients`, `stores` and `handlers` are the words the workshop
-application uses too, so nothing here gets renamed on the way up: what is left for the next step
+And note the three drawer names. `clients`, `stores` and `handlers` are the words 05 uses
+too, so nothing here gets renamed on the way up: what is left for the next step
 is a *move*, not a rewrite.
 
 ## The vocabulary, against this code
@@ -137,15 +137,17 @@ Two fields here are asking for it. `model.go` carries
 formats and trusting you to cope. `validate.go` copes by slicing the day off the front before it
 can say whether a sighting is in the future. `Latitude`/`Longitude` are bare floats whose range is
 checked somewhere else entirely. A `Coordinates` type with a `ParseCoordinates` function would move
-that rule to the one place a coordinate can come into existence. The app does exactly this, and the
-GBIF client there already parses those three date formats at the boundary, so nothing inland has to.
+that rule to the one place a coordinate can come into existence. The [full app](https://github.com/ainsleyclark/workshop-gophercon-africa-2026)
+does exactly this, and the GBIF client there already parses those three date formats at the boundary, so nothing inland has to.
 
 ### One `main.go`, for now
 
 Every folder here has one binary, so one pressure never appears: the day you want the server *and* a
 seeder *and* an interactive CLI from the same code. Wire all three into one `main` and you get flag
 soup, which is where a `cmd/` folder with a subdirectory per binary comes from, each one short, each
-one just assembling services that already exist. The app's `internal/cmd` is that folder.
+one just assembling services that already exist. The full app's
+[`internal/cmd`](https://github.com/ainsleyclark/workshop-gophercon-africa-2026/tree/main/internal/cmd)
+is that folder.
 
 ## Questions
 

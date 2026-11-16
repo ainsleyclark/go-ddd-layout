@@ -102,7 +102,8 @@ a strange thing to demand of the package that is supposed to hold your domain.
 - Let the code that needs something describe what it needs.
 - Give the app our own word for a sighting, so GBIF's field names stop reaching the page.
 
-On the `util` question: the app's `internal/common/README.md` is this repository arguing with
-itself about where that line falls, and it's worth reading once you've seen where the day ends
-up. A dumping ground with a README explaining what may go in it is a different animal from a
+On the `util` question: the full app's
+[`internal/common/README.md`](https://github.com/ainsleyclark/workshop-gophercon-africa-2026/blob/main/internal/common/README.md)
+is that repository arguing with itself about where that line falls, and it's worth reading once
+you've seen where 05 ends up. A dumping ground with a README explaining what may go in it is a different animal from a
 dumping ground.
